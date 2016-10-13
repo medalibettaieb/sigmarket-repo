@@ -7,34 +7,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
- * Entity implementation class for Entity: User
+ * Entity implementation class for Entity: Product
  *
  */
 @Entity
 
-public class User implements Serializable {
+public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "provider")
-	private List<Product> products;
+	@ManyToOne
+	private User provider;
 
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "product")
 	private List<PurchaseDetail> purchaseDetails;
 	private static final long serialVersionUID = 1L;
 
-	public User() {
+	public Product() {
 		super();
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -49,12 +50,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public User getProvider() {
+		return provider;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setProvider(User provider) {
+		this.provider = provider;
 	}
 
 	public List<PurchaseDetail> getPurchaseDetails() {

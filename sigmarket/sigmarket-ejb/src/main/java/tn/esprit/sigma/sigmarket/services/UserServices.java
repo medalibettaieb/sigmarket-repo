@@ -25,4 +25,9 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		entityManager.persist(user);
 	}
 
+	@Override
+	public User findUserById(Integer idUser) {
+		return entityManager.find(User.class, idUser);
+	}
+
 }
