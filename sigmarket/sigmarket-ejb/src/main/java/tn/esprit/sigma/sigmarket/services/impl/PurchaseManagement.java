@@ -1,4 +1,4 @@
-package tn.esprit.sigma.sigmarket.services;
+package tn.esprit.sigma.sigmarket.services.impl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -8,6 +8,10 @@ import javax.persistence.PersistenceContext;
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.persistence.PurchaseDetail;
 import tn.esprit.sigma.sigmarket.persistence.User;
+import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
+import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementLocal;
+import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementRemote;
+import tn.esprit.sigma.sigmarket.services.interfaces.UserServicesLocal;
 
 /**
  * Session Bean implementation class PurchaseManagement

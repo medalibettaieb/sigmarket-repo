@@ -1,4 +1,4 @@
-package tn.esprit.sigma.sigmarket.services;
+package tn.esprit.sigma.sigmarket.services.interfaces;
 
 import javax.ejb.Local;
 

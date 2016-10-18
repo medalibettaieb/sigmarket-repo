@@ -1,10 +1,12 @@
-package tn.esprit.sigma.sigmarket.services;
+package tn.esprit.sigma.sigmarket.services.impl;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import tn.esprit.sigma.sigmarket.persistence.Product;
+import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
+import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesRemote;
 
 /**
  * Session Bean implementation class ProductServices

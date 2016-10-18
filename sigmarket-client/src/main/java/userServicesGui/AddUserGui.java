@@ -5,7 +5,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import tn.esprit.sigma.sigmarket.persistence.User;
-import tn.esprit.sigma.sigmarket.services.UserServicesRemote;
+import tn.esprit.sigma.sigmarket.services.interfaces.UserServicesRemote;
 
 public class AddUserGui {
 

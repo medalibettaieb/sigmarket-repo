@@ -1,12 +1,12 @@
-package tn.esprit.sigma.sigmarket.services;
+package tn.esprit.sigma.sigmarket.services.interfaces;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import tn.esprit.sigma.sigmarket.persistence.Product;
 
-@Remote
-public interface ProductServicesRemote {
+@Local
+public interface ProductServicesLocal {
 	void addProduct(Product product);
-
+	
 	Product findProductById(Integer idProduct);
 }

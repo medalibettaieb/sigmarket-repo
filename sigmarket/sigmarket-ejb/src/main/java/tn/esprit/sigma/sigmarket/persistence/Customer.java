@@ -3,6 +3,7 @@ package tn.esprit.sigma.sigmarket.persistence;
 import java.io.Serializable;
 import java.lang.Float;
 import javax.persistence.*;
+
 import tn.esprit.sigma.sigmarket.persistence.User;
 
 /**

@@ -9,8 +9,8 @@ import javax.ejb.Startup;
 import tn.esprit.sigma.sigmarket.persistence.Customer;
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.persistence.Provider;
-import tn.esprit.sigma.sigmarket.services.ProductServicesLocal;
-import tn.esprit.sigma.sigmarket.services.UserServicesLocal;
+import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
+import tn.esprit.sigma.sigmarket.services.interfaces.UserServicesLocal;
 
 /**
  * Session Bean implementation class Util
