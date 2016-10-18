@@ -32,4 +32,9 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		return entityManager.find(User.class, idUser);
 	}
 
+	@Override
+	public void updateUser(User user) {
+		entityManager.merge(user);
+	}
+
 }

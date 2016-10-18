@@ -9,4 +9,6 @@ public interface UserServicesLocal {
 	void addUser(User user);
 
 	User findUserById(Integer idUser);
+
+	void updateUser(User user);
 }

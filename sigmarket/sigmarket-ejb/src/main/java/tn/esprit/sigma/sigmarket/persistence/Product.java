@@ -34,6 +34,11 @@ public class Product implements Serializable {
 		super();
 	}
 
+	public Product(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

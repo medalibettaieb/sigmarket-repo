@@ -9,4 +9,10 @@ public interface ProductServicesRemote {
 	void addProduct(Product product);
 
 	Product findProductById(Integer idProduct);
+
+	void addProductWithProvider(Product product, Integer idProvider);
+
+	void updateProduct(Product product);
+
+	void addProductWithProviderSlaveSide(Product product, Integer idProvider);
 }

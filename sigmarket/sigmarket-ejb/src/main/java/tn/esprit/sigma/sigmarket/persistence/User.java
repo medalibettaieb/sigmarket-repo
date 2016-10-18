@@ -3,6 +3,7 @@ package tn.esprit.sigma.sigmarket.persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class User implements Serializable {
 	private Integer id;
 	private String name;
 
-	@OneToMany(mappedBy = "provider")
+	@OneToMany(mappedBy = "provider", cascade = CascadeType.MERGE)
 	private List<Product> products;
 
 	@OneToMany(mappedBy = "customer")
@@ -63,6 +64,14 @@ public class User implements Serializable {
 
 	public void setPurchaseDetails(List<PurchaseDetail> purchaseDetails) {
 		this.purchaseDetails = purchaseDetails;
+	}
+
+	public void linkProductsToThisUser(List<Product> products) {
+		this.products = products;
+		for (Product p : products) {
+			p.setProvider(this);
+		}
+
 	}
 
 }

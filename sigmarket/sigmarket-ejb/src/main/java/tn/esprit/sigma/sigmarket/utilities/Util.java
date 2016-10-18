@@ -45,14 +45,12 @@ public class Util {
 		customer2.setName("siryne");
 		customer2.setCredit(10F);
 
-		Product product = new Product();
-		product.setName("bisiqui");
+		
 
 		userServicesLocal.addUser(provider);
 		userServicesLocal.addUser(customer);
 		userServicesLocal.addUser(customer2);
 
-		productServicesLocal.addProduct(product);
 	}
 
 }
