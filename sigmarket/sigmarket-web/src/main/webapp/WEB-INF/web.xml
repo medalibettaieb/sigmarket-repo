@@ -10,4 +10,14 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>First</display-name>
+    <servlet-name>First</servlet-name>
+    <servlet-class>tn.esprit.sigma.sigmarket.presentation.mbeans.First</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>First</servlet-name>
+    <url-pattern>/First</url-pattern>
+  </servlet-mapping>
 </web-app>
