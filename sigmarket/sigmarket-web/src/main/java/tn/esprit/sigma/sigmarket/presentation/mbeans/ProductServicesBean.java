@@ -2,21 +2,24 @@ package tn.esprit.sigma.sigmarket.presentation.mbeans;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
 
 @ManagedBean
-public class MrBean {
-	// models
+@ViewScoped
+public class ProductServicesBean {
 	private Product product = new Product();
-	// dependency injection
 	@EJB
 	private ProductServicesLocal productServicesLocal;
+	@ManagedProperty(value = "#{loginBean}")
+	private LoginBean loginBean;
 
-	// methods or recall
-	public String doAddProduct() {
-		productServicesLocal.addProduct(product);
+	public String doSaveOrUpdateProduct() {
+		Integer idProvider = loginBean.getUser().getId();
+		productServicesLocal.addProductWithProvider(product, idProvider);
 		return "";
 	}
 
@@ -26,6 +29,14 @@ public class MrBean {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
 	}
 
 }

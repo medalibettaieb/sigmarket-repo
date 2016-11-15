@@ -30,7 +30,7 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 	}
 
 	@Override
-	public void addProduct(Product product) {
+	public void saveOrUpdate(Product product) {
 		entityManager.merge(product);
 	}
 
@@ -43,14 +43,8 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 	public void addProductWithProvider(Product product, Integer idProvider) {
 		User providerFound = userServicesLocal.findUserById(idProvider);
 		product.setProvider(providerFound);
+		saveOrUpdate(product);
 
-		updateProduct(product);
-
-	}
-
-	@Override
-	public void updateProduct(Product product) {
-		entityManager.merge(product);
 	}
 
 	@Override
@@ -63,5 +57,7 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 		userServicesLocal.updateUser(providerFound);
 
 	}
+
+	
 
 }

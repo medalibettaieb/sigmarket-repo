@@ -13,9 +13,9 @@ public class TestLogin {
 	public static void main(String[] args) throws NamingException {
 		Context context = new InitialContext();
 		UserServicesRemote userServicesRemote = (UserServicesRemote) context.lookup(
-				"sigmarket-ejb/UserServices!tn.esprit.sigma.sigmarket.services.interfaces.UserServicesRemote");
+				"sigmarket-ear/sigmarket-ejb/UserServices!tn.esprit.sigma.sigmarket.services.interfaces.UserServicesRemote");
 
-		User user = userServicesRemote.login("c1", "c1");
+		User user = userServicesRemote.login("p1", "p1");
 		if (user != null) {
 			if (user instanceof Customer) {
 				System.out.println("i am a customer");

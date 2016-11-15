@@ -6,7 +6,11 @@ import tn.esprit.sigma.sigmarket.persistence.Product;
 
 @Local
 public interface ProductServicesLocal {
-	void addProduct(Product product);
-	
+	void saveOrUpdate(Product product);
+
 	Product findProductById(Integer idProduct);
+
+	void addProductWithProvider(Product product, Integer idProvider);
+
+	void addProductWithProviderSlaveSide(Product product, Integer idProvider);
 }

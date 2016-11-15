@@ -37,6 +37,12 @@ public class Util {
 		provider.setAddress("M9");
 		provider.setLogin("p1");
 		provider.setPassword("p1");
+		
+		Provider provider2 = new Provider();
+		provider2.setName("hammadi");
+		provider2.setAddress("Zahrouni");
+		provider2.setLogin("p2");
+		provider2.setPassword("p2");
 
 		Customer customer = new Customer();
 		customer.setName("skon");
@@ -53,6 +59,7 @@ public class Util {
 		userServicesLocal.addUser(provider);
 		userServicesLocal.addUser(customer);
 		userServicesLocal.addUser(customer2);
+		userServicesLocal.addUser(provider2);
 
 	}
 
