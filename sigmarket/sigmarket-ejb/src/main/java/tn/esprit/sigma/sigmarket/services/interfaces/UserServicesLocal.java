@@ -11,4 +11,6 @@ public interface UserServicesLocal {
 	User findUserById(Integer idUser);
 
 	void updateUser(User user);
+
+	User login(String login, String password);
 }

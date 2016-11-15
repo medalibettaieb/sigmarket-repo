@@ -7,7 +7,6 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 import tn.esprit.sigma.sigmarket.persistence.Customer;
-import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.persistence.Provider;
 import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
 import tn.esprit.sigma.sigmarket.services.interfaces.UserServicesLocal;
@@ -36,16 +35,20 @@ public class Util {
 		Provider provider = new Provider();
 		provider.setName("chaima");
 		provider.setAddress("M9");
+		provider.setLogin("p1");
+		provider.setPassword("p1");
 
 		Customer customer = new Customer();
 		customer.setName("skon");
 		customer.setCredit(100F);
+		customer.setLogin("c1");
+		customer.setPassword("c1");
 
 		Customer customer2 = new Customer();
 		customer2.setName("siryne");
 		customer2.setCredit(10F);
-
-		
+		customer2.setLogin("c2");
+		customer2.setPassword("c2");
 
 		userServicesLocal.addUser(provider);
 		userServicesLocal.addUser(customer);

@@ -9,4 +9,6 @@ public interface UserServicesRemote {
 	void addUser(User user);
 
 	User findUserById(Integer idUser);
+
+	User login(String login, String password);
 }
