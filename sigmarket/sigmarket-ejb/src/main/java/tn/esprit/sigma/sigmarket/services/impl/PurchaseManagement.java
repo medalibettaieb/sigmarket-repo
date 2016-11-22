@@ -5,9 +5,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import tn.esprit.sigma.sigmarket.persistence.Customer;
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.persistence.PurchaseDetail;
-import tn.esprit.sigma.sigmarket.persistence.User;
 import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
 import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementLocal;
 import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementRemote;
@@ -33,11 +33,17 @@ public class PurchaseManagement implements PurchaseManagementRemote, PurchaseMan
 
 	@Override
 	public void purchase(Integer idCustomer, Integer idProduct, Integer quantity) {
-		User customer = userServicesLocal.findUserById(idCustomer);
+		Customer customer = (Customer) userServicesLocal.findUserById(idCustomer);
 		Product product = productServicesLocal.findProductById(idProduct);
-		PurchaseDetail purchaseDetail = new PurchaseDetail(quantity, customer, product);
-
-		entityManager.merge(purchaseDetail);
+		if (customer.getCredit() >= (quantity * product.getPrice())) {
+			PurchaseDetail purchaseDetail = new PurchaseDetail(quantity, customer, product);
+			purchaseDetail.setState(true);
+			customer.setCredit(customer.getCredit() - (quantity * product.getPrice()));
+			entityManager.merge(purchaseDetail);
+		} else {
+			PurchaseDetail purchaseDetail = new PurchaseDetail(quantity, customer, product);
+			entityManager.merge(purchaseDetail);
+		}
 
 	}
 

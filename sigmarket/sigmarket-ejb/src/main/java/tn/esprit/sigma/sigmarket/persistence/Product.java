@@ -22,6 +22,7 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private Float price;
 
 	@ManyToOne
 	private User provider;
@@ -69,6 +70,14 @@ public class Product implements Serializable {
 
 	public void setPurchaseDetails(List<PurchaseDetail> purchaseDetails) {
 		this.purchaseDetails = purchaseDetails;
+	}
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
 	}
 
 }

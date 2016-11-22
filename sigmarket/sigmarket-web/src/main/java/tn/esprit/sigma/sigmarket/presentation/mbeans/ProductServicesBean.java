@@ -2,6 +2,7 @@ package tn.esprit.sigma.sigmarket.presentation.mbeans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
+import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementLocal;
 
 @ManagedBean
 @ViewScoped
@@ -18,16 +20,37 @@ public class ProductServicesBean {
 	private List<Product> products = new ArrayList<Product>();
 	private Boolean displayF1 = true;
 	private Boolean displayF2 = false;
+	private Integer quantity;
 
 	@EJB
 	private ProductServicesLocal productServicesLocal;
+	@EJB
+	private PurchaseManagementLocal purchaseManagementLocal;
 	@ManagedProperty(value = "#{loginBean}")
 	private LoginBean loginBean;
+	@ManagedProperty(value = "#{caddyBean}")
+	private CaddyBean caddyBean;
 
 	public String doSaveOrUpdateProduct() {
 		Integer idProvider = loginBean.getUser().getId();
 		productServicesLocal.addProductWithProvider(product, idProvider);
 		return "";
+	}
+
+	public String addToCaddy() {
+		Map<Product, Integer> map = caddyBean.getMap();
+		map.put(product, quantity);
+		caddyBean.setMap(map);
+		return null;
+	}
+
+	public String doPurchase() {
+		Map<Product, Integer> map = caddyBean.getMap();
+		for (Product p : map.keySet()) {
+			purchaseManagementLocal.purchase(loginBean.getUser().getId(), p.getId(), map.get(p));
+		}
+
+		return null;
 	}
 
 	public void selectProduct() {
@@ -74,6 +97,22 @@ public class ProductServicesBean {
 
 	public void setDisplayF2(Boolean displayF2) {
 		this.displayF2 = displayF2;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public CaddyBean getCaddyBean() {
+		return caddyBean;
+	}
+
+	public void setCaddyBean(CaddyBean caddyBean) {
+		this.caddyBean = caddyBean;
 	}
 
 }

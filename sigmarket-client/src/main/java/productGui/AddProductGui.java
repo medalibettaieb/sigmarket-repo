@@ -15,7 +15,9 @@ public class AddProductGui {
 				"sigmarket-ear/sigmarket-ejb/ProductServices!tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesRemote");
 
 		Product product = new Product("lait");
+		product.setPrice(10F);
 		Product product2 = new Product("bisikwi");
+		product2.setPrice(12F);
 
 		productServicesRemote.addProductWithProvider(product, 1);
 		productServicesRemote.addProductWithProvider(product2, 1);

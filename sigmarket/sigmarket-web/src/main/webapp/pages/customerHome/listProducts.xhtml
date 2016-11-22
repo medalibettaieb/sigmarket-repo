@@ -7,6 +7,13 @@
 	template="/WEB-INF/template/template.xhtml">
 	<ui:define name="title">list products</ui:define>
 	<ui:define name="content">
+		<h1>#{loginBean.user.name} have added #{caddyBean.mapSize}
+			products</h1>
+		<br/>
+		<h:form id="f3">
+			<h:commandButton action="#{productServicesBean.doPurchase()}"
+				value="purchase" />
+		</h:form>
 		<h:form id="f1" rendered="#{productServicesBean.displayF1}">
 			<h:dataTable value="#{productServicesBean.products}" var="p"
 				border="2">
@@ -32,7 +39,11 @@
 			<h1>product details</h1>
 			<h:panelGrid columns="2">
 				<h:outputText value="name" />
-				<h:inputText value="#{productServicesBean.product.name}" />
+				<h:outputText value="#{productServicesBean.product.name}" />
+				<h:outputText value="quantity" />
+				<h:inputText value="#{productServicesBean.quantity}" />
+				<h:commandButton action="#{productServicesBean.addToCaddy()}"
+					value="add to caddy" />
 			</h:panelGrid>
 
 
