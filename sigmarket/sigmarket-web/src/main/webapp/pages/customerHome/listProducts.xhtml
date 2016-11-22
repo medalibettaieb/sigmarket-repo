@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+	<ui:define name="title">list products</ui:define>
+	<ui:define name="content">
+		<h:form id="f1" rendered="#{productServicesBean.displayF1}">
+			<h:dataTable value="#{productServicesBean.products}" var="p"
+				border="2">
+				<h:column id="c1">
+					<f:facet name="header">
+						<h:outputText value="name" />
+					</f:facet>
+					<h:outputText value="#{p.name}" />
+				</h:column>
+				<h:column id="c2">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="#{productServicesBean.selectProduct()}"
+						value="select">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{productServicesBean.product}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<h:form id="f2" rendered="#{productServicesBean.displayF2}">
+			<h1>product details</h1>
+			<h:panelGrid columns="2">
+				<h:outputText value="name" />
+				<h:inputText value="#{productServicesBean.product.name}" />
+			</h:panelGrid>
+
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

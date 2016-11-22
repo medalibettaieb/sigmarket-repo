@@ -1,5 +1,7 @@
 package tn.esprit.sigma.sigmarket.services.interfaces;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 
 import tn.esprit.sigma.sigmarket.persistence.Product;
@@ -13,4 +15,6 @@ public interface ProductServicesRemote {
 	void addProductWithProvider(Product product, Integer idProvider);
 
 	void addProductWithProviderSlaveSide(Product product, Integer idProvider);
+
+	List<Product> findAllProducts();
 }
