@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import tn.esprit.sigma.sigmarket.persistence.Category;
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
 import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementLocal;
@@ -18,9 +19,12 @@ import tn.esprit.sigma.sigmarket.services.interfaces.PurchaseManagementLocal;
 public class ProductServicesBean {
 	private Product product = new Product();
 	private List<Product> products = new ArrayList<Product>();
+	private List<Product> productsByProvider = new ArrayList<>();
 	private Boolean displayF1 = true;
 	private Boolean displayF2 = false;
 	private Integer quantity;
+	private int categoryId;
+	private List<Category> categories;
 
 	@EJB
 	private ProductServicesLocal productServicesLocal;
@@ -31,8 +35,18 @@ public class ProductServicesBean {
 	@ManagedProperty(value = "#{caddyBean}")
 	private CaddyBean caddyBean;
 
+	public void doDelete() {
+		productServicesLocal.deleteProduct(product.getId());
+	}
+
+	public void cancel() {
+
+	}
+
 	public String doSaveOrUpdateProduct() {
 		Integer idProvider = loginBean.getUser().getId();
+		Category category = productServicesLocal.findCategoryById(categoryId);
+		product.setCategory(category);
 		productServicesLocal.addProductWithProvider(product, idProvider);
 		return "";
 	}
@@ -113,6 +127,32 @@ public class ProductServicesBean {
 
 	public void setCaddyBean(CaddyBean caddyBean) {
 		this.caddyBean = caddyBean;
+	}
+
+	public List<Product> getProductsByProvider() {
+		productsByProvider = productServicesLocal.findAllProductsByProvider(loginBean.getUser().getId());
+		return productsByProvider;
+	}
+
+	public void setProductsByProvider(List<Product> productsByProvider) {
+		this.productsByProvider = productsByProvider;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public List<Category> getCategories() {
+		categories = productServicesLocal.findAllCategories();
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 }

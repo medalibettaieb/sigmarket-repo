@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+	<ui:define name="title">manage products</ui:define>
+	<ui:define name="content">
+		<h:form id="f1">
+			<h:dataTable value="#{productServicesBean.productsByProvider}"
+				var="p" border="2">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="name" />
+					</f:facet>
+					<h:outputText value="#{p.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="update" value="select">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{productServicesBean.product}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+			<h:commandButton action="update" value="NEW" />
+		</h:form>
+		<h:form id="f2">
+			<h:panelGrid columns="2">
+				<h:outputText value="name" />
+				<h:inputText value="#{productServicesBean.product.name}" />
+				<h:outputText value="price" />
+				<h:inputText value="#{productServicesBean.product.price}" />
+				<h:outputText value="category" />
+				<h:selectOneMenu value="#{productServicesBean.categoryId}">
+					<f:selectItem itemLabel="select" />
+					<f:selectItems value="#{productServicesBean.categories}" var="c"
+						itemLabel="#{c.name}" itemValue="#{c.id}" />
+				</h:selectOneMenu>
+				<h:commandButton
+					action="#{productServicesBean.doSaveOrUpdateProduct()}"
+					value="save or update" />
+				<h:commandButton action="#{productServicesBean.doDelete()}"
+					value="delete" />
+				<h:commandButton action="#{productServicesBean.cancel()}"
+					value="cancel" />
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

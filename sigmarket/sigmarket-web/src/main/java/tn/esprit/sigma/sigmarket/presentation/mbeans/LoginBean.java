@@ -26,6 +26,7 @@ public class LoginBean {
 		userLoggedIn = userServicesLocal.login(user.getLogin(), user.getPassword());
 		if (userLoggedIn != null) {
 			user = userLoggedIn;
+			hasRole = true;
 			if (userLoggedIn instanceof Provider) {
 				navigateTo = "/pages/providerHome/providerHome?faces-redirect=true";
 			} else {

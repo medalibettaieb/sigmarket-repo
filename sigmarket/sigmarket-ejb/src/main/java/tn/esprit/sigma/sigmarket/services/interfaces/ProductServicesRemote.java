@@ -17,4 +17,8 @@ public interface ProductServicesRemote {
 	void addProductWithProviderSlaveSide(Product product, Integer idProvider);
 
 	List<Product> findAllProducts();
+
+	List<Product> findAllProductsByProvider(int providerId);
+	
+	void deleteProduct(int productId);
 }

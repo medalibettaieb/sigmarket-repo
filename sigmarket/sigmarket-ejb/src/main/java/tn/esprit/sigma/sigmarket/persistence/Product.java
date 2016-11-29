@@ -27,6 +27,9 @@ public class Product implements Serializable {
 	@ManyToOne
 	private User provider;
 
+	@ManyToOne
+	private Category category;
+
 	@OneToMany(mappedBy = "product")
 	private List<PurchaseDetail> purchaseDetails;
 	private static final long serialVersionUID = 1L;
@@ -78,6 +81,14 @@ public class Product implements Serializable {
 
 	public void setPrice(Float price) {
 		this.price = price;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }

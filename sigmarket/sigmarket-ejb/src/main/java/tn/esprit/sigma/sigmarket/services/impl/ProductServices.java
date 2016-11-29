@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import tn.esprit.sigma.sigmarket.persistence.Category;
 import tn.esprit.sigma.sigmarket.persistence.Product;
 import tn.esprit.sigma.sigmarket.persistence.User;
 import tn.esprit.sigma.sigmarket.services.interfaces.ProductServicesLocal;
@@ -61,6 +62,28 @@ public class ProductServices implements ProductServicesRemote, ProductServicesLo
 	@Override
 	public List<Product> findAllProducts() {
 		return entityManager.createQuery("SELECT p FROM Product p", Product.class).getResultList();
+	}
+
+	@Override
+	public List<Product> findAllProductsByProvider(int providerId) {
+		return entityManager.createQuery("SELECT p FROM Product p WHERE p.provider.id=:param", Product.class)
+				.setParameter("param", providerId).getResultList();
+	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		entityManager.remove(findProductById(productId));
+
+	}
+
+	@Override
+	public List<Category> findAllCategories() {
+		return entityManager.createQuery("SELECT c FROM Category c", Category.class).getResultList();
+	}
+
+	@Override
+	public Category findCategoryById(int categoryId) {
+		return entityManager.find(Category.class, categoryId);
 	}
 
 }
